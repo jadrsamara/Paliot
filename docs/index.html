@@ -1,18 +1,19 @@
 <!DOCTYPE html PUBLIC>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
   <title>pump</title>
-  <script defer>
-	function httpGet(theUrl) {
-		var xmlHttp = new XMLHttpRequest();
-		xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-		xmlHttp.send( null );
-		return xmlHttp.responseText;
-	}
-	document.getElementById('para').innerHTML = httpGet("https://paliot-7dd62-default-rtdb.europe-west1.firebasedatabase.app/controlling/pump.json");
-	console.log(httpGet("https://paliot-7dd62-default-rtdb.europe-west1.firebasedatabase.app/controlling/pump.json"));
-  </script>
 </head>
 <body>
-<p id="para">
+<p id="myAnchor">
 </p>
+<script>
+	function httpGet(theUrl)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+    var pump = JSON.parse(httpGet("https://paliot-7dd62-default-rtdb.europe-west1.firebasedatabase.app/controlling/pump.json"));
+	document.getElementById("myAnchor").innerHTML = pump.status+","+pump.time;
+  </script>
 </body></html>
