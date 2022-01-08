@@ -1,9 +1,17 @@
 <!DOCTYPE html PUBLIC>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
   <title>pump</title>
+  <script>
+	function httpGet(theUrl) {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+		xmlHttp.send( null );
+		return xmlHttp.responseText;
+	}
+	document.getElementById('para').innerHttp = httpGet("https://script.google.com/macros/s/AKfycbwrpg-tMPJctUC1b929QgCH0ql3eLDPivkCP1Uu8kkeKSSR121XuzHz581WF-Qm7-sx/exec?unit=pump");
+  </script>
 </head>
 <body>
-<p>
-hello
+<p id="para">
 </p>
 </body></html>
