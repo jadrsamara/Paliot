@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
   <title>pump</title>
-  <script>
+  <script defer>
 	function httpGet(theUrl) {
 		var xmlHttp = new XMLHttpRequest();
 		xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
@@ -9,6 +9,7 @@
 		return xmlHttp.responseText;
 	}
 	document.getElementById('para').innerHTML = httpGet("https://paliot-7dd62-default-rtdb.europe-west1.firebasedatabase.app/controlling/pump.json");
+	console.log(httpGet("https://paliot-7dd62-default-rtdb.europe-west1.firebasedatabase.app/controlling/pump.json"));
   </script>
 </head>
 <body>
