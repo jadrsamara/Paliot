@@ -78,6 +78,8 @@ void setup() {
   // Start the Serial Monitor
   Serial.begin(115200);
 
+  pinMode(34, INPUT);
+  
   // init data
   dataInit();
   
@@ -94,11 +96,11 @@ void setup() {
   dht.begin();
 
   // loop
+  connectWifi();
   readTemp();
   readAirTempAndHumidity();
   soil_moisture();
   printValues();
-  connectWifi();
   transmitData();
 
   // Sleep now
@@ -162,9 +164,13 @@ void connect_MQTT(){
   // Connect to the WiFi
   WiFi.begin(ssid,password);
   // Wait until the connection has been confirmed before continuing
+  int counter = 0;
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
+    delay(1000);
     Serial.print(".");
+    counter += 1;
+    if(counter >= 10)
+      esp_deep_sleep_start();
   }
   // IP Address of the ESP32
   Serial.println("WiFi connected");
@@ -221,7 +227,7 @@ void printValues(){
 }
 
 void soil_moisture(){
-  dataArray[3] = map(map(analogRead(sMoist),2590,840,0,100),50,-45,100,0);
+  dataArray[3] = map(analogRead(sMoist),2470,1160,0,100);
 }
 
 
